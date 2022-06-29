@@ -38,7 +38,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-import "../../styles/components/Graph.scss";
+import "../../styles/components/Pi.scss";
 
 const Pi = () => {
   return (
