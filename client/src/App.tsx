@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./components/sidebar/Sidebar";
 import Form from "./components/form/Form";
 import Graph from "./components/graphs/Graph";
+import Pi from "./components/graphs/Pi";
 
 import "./styles/App.scss";
 
@@ -15,6 +16,7 @@ const App = () => {
       <div className="main-container">
         <Form submitData={(data: Object) => logData(data)} />
         <Graph />
+        <Pi />
       </div>
     </div>
   );
