@@ -5,9 +5,15 @@ import { APIGatewayEvent } from "aws-lambda";
 const { TEXTURE_GROUP_TABLE_NAME } = process.env;
 const dynamoClient = new DynamoDB.DocumentClient();
 
-async function getItems(params: DynamoDB.DocumentClient.QueryInput) {
+async function createItem(params: {
+  TableName: string;
+  Item: {
+    clientId: string;
+    formId: string;
+  };
+}) {
   try {
-    return await dynamoClient.query(params).promise();
+    await dynamoClient.put(params).promise();
   } catch (err) {
     return err;
   }
@@ -15,27 +21,20 @@ async function getItems(params: DynamoDB.DocumentClient.QueryInput) {
 
 exports.handler = async function (event: APIGatewayEvent) {
   console.log("request:", JSON.stringify(event));
-  if (event.pathParameters === null) {
-    return apiGatewayResponse(500, "Get not Complete, No id given");
-  }
-  const id = event.pathParameters.id;
-
-  const params: DynamoDB.DocumentClient.QueryInput = {
+  const body =
+    typeof event.body === "string" ? JSON.parse(event.body) : event.body;
+  const params = {
     TableName: TEXTURE_GROUP_TABLE_NAME!,
-    KeyConditionExpression: "#87ea0 = :87ea0",
-    ExpressionAttributeValues: {
-      ":87ea0": id,
-    },
-    ExpressionAttributeNames: {
-      "#87ea0": "userName",
+    Item: {
+      clientId: body.clientId,
+      formId: body.formId,
+      ...body,
     },
   };
 
   try {
-    const data: DynamoDB.DocumentClient.QueryOutput | any = await getItems(
-      params
-    );
-    return apiGatewayResponse(200, data.Items);
+    await createItem(params);
+    return apiGatewayResponse(200, "Successfuly created item!");
   } catch (err) {
     return apiGatewayResponse(500, err);
   }

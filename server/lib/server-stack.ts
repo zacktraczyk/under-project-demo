@@ -33,7 +33,7 @@ export class ServerStack extends cdk.Stack {
     const main = api.root.resourceForPath("main");
 
     // Adding Methods to main branch
-    main.addMethod("POST", new apigw.LambdaIntegration(putLambda));
+    main.addMethod("PUT", new apigw.LambdaIntegration(putLambda));
 
     new cdk.CfnOutput(this, "HTTP API URL", {
       value: api.url ?? "Something went wrong with the deploy",
