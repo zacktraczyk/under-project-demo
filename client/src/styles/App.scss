@@ -1,3 +1,18 @@
+@import "screenSizes";
+
+$text-color1: #42522E;
+
 .app {
-  text-align: center;
+  color: $text-color1;
+}
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  @include small-down {
+    flex-direction: column;
+  }
 }

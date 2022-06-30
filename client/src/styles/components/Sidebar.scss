@@ -1,0 +1,18 @@
+.sidebar-container {
+  z-index: 500;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  padding: 50px;
+  background-color: lightgreen;
+
+  ul {
+    padding: 0px;
+    margin: 0px;
+  }
+  li {
+    list-style: none;
+  }
+}

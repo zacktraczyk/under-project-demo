@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "./components/sidebar/Sidebar";
 import Form from "./components/form/Form";
-import Graph from "./components/graphs/Graph";
+import Graphs from "./components/graphs/Graphs";
 
 import "./styles/App.scss";
 
 const App = () => {
+  const [formData, setFormData] = useState({});
   const logData = (data: Object) => {
     console.log("App.tsx: form data submitted:", data);
+    setFormData(data);
   };
   return (
     <div className="app">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="main-container">
         <Form submitData={(data: Object) => logData(data)} />
-        <Graph />
+        <Graphs displayData={formData}/>
       </div>
     </div>
   );
