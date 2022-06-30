@@ -77,7 +77,7 @@ const Form = (props: formProps) => {
           <p className="field-title">Additional Contribution</p>
           <span className="input-wrapper">
             $
-            <input type="number" placeholder="5000" {...register("addContr")} />
+            <input type="number" placeholder="100" {...register("addContr")} />
           </span>
           {errors.rateOfReturn && (
             <p className="error">{"" + errors.rateOfReturn.message}</p>

@@ -1,5 +1,4 @@
 //Annualized ROI
-import React from 'react';
 function roi(){
     //Get these from user input
     let initial = 5000;
