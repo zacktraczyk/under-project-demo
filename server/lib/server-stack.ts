@@ -1,18 +1,65 @@
-import { Duration, Stack, StackProps } from "aws-cdk-lib";
-import { Construct } from "constructs";
 import * as cdk from "@aws-cdk/core";
 import * as lambda from "@aws-cdk/aws-lambda";
 import * as apigw from "@aws-cdk/aws-apigateway";
 import * as dynamodb from "@aws-cdk/aws-dynamodb";
-import { Grant } from "aws-cdk-lib/aws-iam";
+import * as cognito from "@aws-cdk/aws-cognito";
 
 export class ServerStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    // Create DynamoDB table
     const table = new dynamodb.Table(this, "User-Form-Data", {
       partitionKey: { name: "clientId", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "formId", type: dynamodb.AttributeType.STRING },
+    });
+
+    // Creating lambda for cognito to put into dynamoDB
+    const cognitoLambda = new lambda.Function(this, "cognitoLambdaHandler", {
+      runtime: lambda.Runtime.NODEJS_12_X,
+      code: lambda.Code.fromAsset("./functions"),
+      handler: "cognitoLambda.handler",
+      environment: {
+        USER_FORM_DATA_TABLE_NAME: table.tableName,
+      },
+    });
+
+    // Creating Cognito user pool
+
+    const userPool = new cognito.UserPool(this, "Under-Project-User-Pool", {
+      userPoolName: "Under-Project-User-Pool",
+      selfSignUpEnabled: true,
+      signInAliases: {
+        username: true,
+      },
+      lambdaTriggers: {
+        postConfirmation: cognitoLambda,
+      },
+      passwordPolicy: {
+        minLength: 6,
+        requireDigits: false,
+        requireLowercase: false,
+        requireSymbols: false,
+        requireUppercase: false,
+      },
+    });
+
+    const domain = userPool.addDomain("Under-Project-User-Pool-Domain", {
+      cognitoDomain: {
+        domainPrefix: "under-project-user-pool-domain",
+      },
+    });
+
+    const client = userPool.addClient("app-client", {
+      generateSecret: false,
+      authFlows: {
+        adminUserPassword: true,
+      },
+      supportedIdentityProviders: [
+        cognito.UserPoolClientIdentityProvider.COGNITO,
+      ],
+      // readAttributes: clientReadAttributes,
+      // writeAttributes: clientWriteAttributes
     });
 
     // Lambda that handles putting
@@ -49,16 +96,7 @@ export class ServerStack extends cdk.Stack {
       }
     );
 
-    // Lambda that handles deleting given a userId
-    const delUserLambda = new lambda.Function(this, "delUserLambdaHandler", {
-      runtime: lambda.Runtime.NODEJS_12_X,
-      code: lambda.Code.fromAsset("./functions"),
-      handler: "delUserLambda.handler",
-      environment: {
-        USER_FORM_DATA_TABLE_NAME: table.tableName,
-      },
-    });
-
+    // Lambda that handles getting a specific entry given a userId and a formId
     const getFormLambda = new lambda.Function(this, "getFormLambdaHandler", {
       runtime: lambda.Runtime.NODEJS_12_X,
       code: lambda.Code.fromAsset("./functions"),
@@ -68,6 +106,7 @@ export class ServerStack extends cdk.Stack {
       },
     });
 
+    // Lambda that handles deleteing a specific entry given a userId and a formId
     const delFormLambda = new lambda.Function(this, "delFormLambdaHandler", {
       runtime: lambda.Runtime.NODEJS_12_X,
       code: lambda.Code.fromAsset("./functions"),
@@ -78,10 +117,11 @@ export class ServerStack extends cdk.Stack {
     });
 
     // permissions to lambda to dynamo table
+
+    table.grantWriteData(cognitoLambda);
     table.grantWriteData(putLambda);
     table.grantReadData(scanLambda);
     table.grantReadData(queryUserLambda);
-    table.grantReadWriteData(delUserLambda);
     table.grantReadData(getFormLambda);
     table.grantReadWriteData(delFormLambda);
 
