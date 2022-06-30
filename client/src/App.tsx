@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "./components/sidebar/Sidebar";
 import Form from "./components/form/Form";
 import Graphs from "./components/graphs/Graphs";
+import { Link } from "react-router-dom";
 
 import "./styles/App.scss";
 import Login from "./components/login/Login";
