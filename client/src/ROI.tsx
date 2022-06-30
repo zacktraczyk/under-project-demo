@@ -1,8 +1,7 @@
 //Annualized ROI
-import { EmrModifyInstanceFleetByName } from 'aws-cdk-lib/aws-stepfunctions-tasks';
 import React from 'react';
 function roi(){
-    //Get these from front end
+    //Get these from user input
     let initial = 5000;
     let timeyrs = 1;
     let rate = 6/100;
