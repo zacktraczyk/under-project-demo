@@ -1,3 +1,4 @@
+import { Callback } from "aws-lambda";
 import { DynamoDB } from "aws-sdk";
 import { apiGatewayResponse } from "./utillities/response";
 
@@ -22,24 +23,28 @@ async function createItem(params: {
   }
 }
 
-exports.handler = async function (event: any) {
+exports.handler = async function (
+  event: any,
+  context: any,
+  callback: Callback
+) {
   console.log("EVENT: ", event);
-  // console.log("request:", JSON.stringify(event));
-  // translating the body if needed
   const params = {
     TableName: USER_FORM_DATA_TABLE_NAME!,
     // creating the item
     Item: {
-      clientId: event.request.userAttributes.username,
-      formId: "clientData",
+      clientId: event.userName,
+      formId: event.request.userAttributes.sub,
     },
   };
 
   //try to put into the table, 200 success, 500 error
   try {
     await createItem(params);
-    return apiGatewayResponse(200, "Successfuly created item!");
+    console.log("Successfuly created item!");
+    callback(null, event);
   } catch (err) {
-    return apiGatewayResponse(500, err);
+    console.error(err);
+    callback(null, event);
   }
 };

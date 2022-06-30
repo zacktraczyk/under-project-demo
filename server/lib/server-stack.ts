@@ -52,14 +52,9 @@ export class ServerStack extends cdk.Stack {
 
     const client = userPool.addClient("app-client", {
       generateSecret: false,
-      authFlows: {
-        adminUserPassword: true,
-      },
       supportedIdentityProviders: [
         cognito.UserPoolClientIdentityProvider.COGNITO,
       ],
-      // readAttributes: clientReadAttributes,
-      // writeAttributes: clientWriteAttributes
     });
 
     // Lambda that handles putting
