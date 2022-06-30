@@ -13,7 +13,7 @@ function Graphs(props: GraphsProps) {
   const [statistics, setStatistics] = useState({graph: {}, pi: {}});
 
   useEffect(() => {
-    console.log('Graph.tsx: useEfefct: DATA UPDATED')
+    console.log('Graph.tsx: useEffect: DATA UPDATED')
     //Trying to grab data
     //let x = FormData.initInvest.value;
     //let y = data.initInvest.value;
