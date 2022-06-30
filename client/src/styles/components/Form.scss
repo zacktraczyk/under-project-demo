@@ -19,24 +19,62 @@ $background-color: #F7F8F7;
     align-items: flex-start;
     padding: 0px;
     // gap: 13.75px;
-    
+
     width: 300px;
     height: 120px;
     left: 9.17px;
     top: 9.17px;
-    
+
 
     .field-title {
       font-size: 15px;
     }
+
   }
 
-  input {
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input:focus {
+    border: none;
+    outline: none;
+  }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
     width: 100%;
-    padding: 20px;
+    padding: 13px;
+    background-color: white;
     border: 0.458361px solid #E3E9D3;
     box-shadow: 0px 0px 1.83344px rgba(192, 192, 192, 0.25);
     border-radius: 13.7508px;
+
+
+    input {
+      pointer-events: none;
+      border: none;
+      font-size: 16px;
+      -webkit-appearance: none;
+    }
+
+  }
+
+  .input-wrapper.currency {
+    input {
+      padding-left: 1ch;
+    }
+  }
+
+  .input-wrapper.percentage {
+    width: 50%;
+    input {
+      width: 80%;
+    }
   }
 
   .error {
@@ -49,7 +87,7 @@ $background-color: #F7F8F7;
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     height: 30px;
 
@@ -57,21 +95,31 @@ $background-color: #F7F8F7;
       padding: 0px;
       width: 50px;
     }
-
+ 
     button {
-      // padding-top: 10px;
+      background-color: #E3E9D3;
+      border: none;
+      padding: 10px 22px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .selected {
+      background-color: #6E9532;
+      color: white;
     }
   }
 
   button[type=submit] {
     background: #42522E;
-    font-size: 18px;
+    font-size: 14px;
     color: white;
     font-weight: bold;
     border: none;
     width: 100%;
-    padding: 30px;
+    padding: 16px 30px;
     box-shadow: 0px 0px 18.3344px 2.2918px rgba(8, 106, 35, 0.09);
     border-radius: 13.7508px;
+    cursor: pointer;
   }
 }
