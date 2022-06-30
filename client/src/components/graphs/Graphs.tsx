@@ -3,7 +3,7 @@ import BarGraph from "./BarGraph";
 import Pi from "./Pi";
 
 import "../../styles/components/Graphs.scss";
-
+import "../../components/form/Form.tsx";
 interface GraphsProps {
   displayData: {},
 }
@@ -14,13 +14,18 @@ function Graphs(props: GraphsProps) {
 
   useEffect(() => {
     console.log('Graph.tsx: useEfefct: DATA UPDATED')
-
-    // NOTE: Calculate Statistics from form data function 
-    // call goes here. Function take object literal with 
-    // string values and returns object literal with numbers
-    // ready for graph display
-    //
-    // const calcStats = generateStatistics(props.displayData);
+    //Trying to grab data
+    //let x = FormData.initInvest.value;
+    //let y = data.initInvest.value;
+    
+    /*
+     NOTE: Calculate Statistics from form data function 
+     call goes here. Function take object literal with 
+     string values and returns object literal with numbers
+     ready for graph display
+    
+     const calcStats = generateStatistics(props.displayData);
+     */
 
     const calcStats = {
       startAmnt: 5,
