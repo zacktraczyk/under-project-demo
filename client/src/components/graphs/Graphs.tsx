@@ -4,6 +4,7 @@ import Pi from "./Pi";
 
 import "../../styles/components/Graphs.scss";
 import "../../components/form/Form.tsx";
+
 interface GraphsProps {
   displayData: {},
 }
