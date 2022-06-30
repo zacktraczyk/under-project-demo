@@ -23,26 +23,30 @@ exports.handler = async function (event: APIGatewayEvent) {
   // if its not given a clientId it will error and tell you
   if (event.pathParameters === null) {
     return apiGatewayResponse(500, "Get not Complete, pathParameter null");
-  }
+  } else if (event.pathParameters.clientId === null) {
+    return apiGatewayResponse(500, "Get not Complete, clientId null");
+  } else if (event.pathParameters.formId === null) {
+    return apiGatewayResponse(500, "Get not Complete, formId null");
+  } else {
+    //getting the clientId from the html request
+    const clientId = event.pathParameters.clientId;
+    const formId = event.pathParameters.formId;
 
-  //getting the clientId from the html request
-  const clientId = event.pathParameters.clientId;
-  const formId = event.pathParameters.formId;
+    const params: DynamoDB.DocumentClient.GetItemInput = {
+      TableName: USER_FORM_DATA_TABLE_NAME!,
+      Key: {
+        clientId: clientId,
+        formId: formId,
+      },
+    };
 
-  const params: DynamoDB.DocumentClient.GetItemInput = {
-    TableName: USER_FORM_DATA_TABLE_NAME!,
-    Key: {
-      clientId: clientId,
-      formId: formId,
-    },
-  };
-
-  try {
-    const data: DynamoDB.DocumentClient.GetItemOutput | any = await getItems(
-      params
-    );
-    return apiGatewayResponse(200, data.Items);
-  } catch (err) {
-    return apiGatewayResponse(500, err);
+    try {
+      const data: DynamoDB.DocumentClient.GetItemOutput | any = await getItems(
+        params
+      );
+      return apiGatewayResponse(200, data.Item);
+    } catch (err) {
+      return apiGatewayResponse(500, err);
+    }
   }
 };

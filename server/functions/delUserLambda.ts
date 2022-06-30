@@ -8,7 +8,7 @@ const { USER_FORM_DATA_TABLE_NAME } = process.env;
 //setting dynamoDB client
 const dynamoClient = new DynamoDB.DocumentClient();
 
-// function that tries to do the delete
+// function that tries to do the deletion
 async function delItem(params: DynamoDB.DocumentClient.DeleteItemInput) {
   try {
     return await dynamoClient.delete(params).promise();
