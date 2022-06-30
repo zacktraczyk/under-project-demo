@@ -53,6 +53,7 @@ export class ServerStack extends cdk.Stack {
     const client = userPool.addClient("app-client", {
       generateSecret: false,
       supportedIdentityProviders: [
+        cognito.UserPoolClientIdentityProvider.GOOGLE,
         cognito.UserPoolClientIdentityProvider.COGNITO,
       ],
     });
