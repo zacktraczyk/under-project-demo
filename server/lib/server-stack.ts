@@ -29,9 +29,7 @@ export class ServerStack extends cdk.Stack {
     const userPool = new cognito.UserPool(this, "Under-Project-User-Pool", {
       userPoolName: "Under-Project-User-Pool",
       selfSignUpEnabled: true,
-      signInAliases: {
-        username: true,
-      },
+      signInAliases: {},
       lambdaTriggers: {
         postConfirmation: cognitoLambda,
       },
