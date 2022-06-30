@@ -23,7 +23,7 @@ async function createItem(params: {
 }
 
 exports.handler = async function (event: any) {
-  console.log("EVENT TYPE: ", typeof event);
+  console.log("EVENT: ", event);
   // console.log("request:", JSON.stringify(event));
   // translating the body if needed
   const params = {
