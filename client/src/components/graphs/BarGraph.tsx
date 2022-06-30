@@ -57,7 +57,11 @@ const data = [
   },
 ];
 
-const BarGraph = () => {
+interface propsBarGraph {
+  displayData: {}
+}
+
+const BarGraph = (props: propsBarGraph) => {
   return (
     <BarChart
       width={500}

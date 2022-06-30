@@ -2,14 +2,6 @@ import { useForm } from "react-hook-form";
 
 import "../../styles/components/Form.scss";
 
-export interface ROIData {
-  addContr: string | null,
-  contrEach: string | null,
-  initInvest: string | null,
-  rateOfReturn: string | null,
-  yearsToAccum: string | null
-}
-
 interface formProps {
   submitData: Function;
 }
