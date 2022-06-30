@@ -1,0 +1,102 @@
+.login {
+  position: relative;
+  height: 50vh;
+  width: 500px;
+  margin: 20px;
+  padding: 50px;
+  border-radius: 25px;
+  background-color: #fff;
+  box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 80%;
+}
+
+.login h2 {
+  cursor: pointer;
+  text-align: center;
+  font-size: 40px;
+  padding: 0px;
+}
+
+.login button {
+  background-color: none;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size: 40px;
+}
+
+.login ol {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 0px;
+}
+
+.login .field {
+  height: 80px;
+}
+
+.login ol li {
+  list-style: none;
+}
+
+.login .selected {
+  color: #E2AEDD;
+  text-decoration: underline;
+}
+
+.login input {
+  width: 100%;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.login .errors {
+  margin-top: 8px;
+  color: #f57187;
+  font-size: 12px;
+}
+
+.login .error-container {
+  margin: 0px;
+  position: absolute;
+  bottom: 10px;
+  width: 80%;
+}
+
+.login .request-error {
+  background-color: #f57187;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+}
+
+.login input[type=submit] {
+  font-size: inherit;
+  margin-left: 40%;
+  width: 20%;
+  cursor: pointer;
+  font-weight: bold;
+  border: 3px solid gray;
+  height: 4em;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .login {
+    width: 80vw;
+    padding: 30px;
+  }
+}
