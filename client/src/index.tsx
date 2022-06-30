@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./styles/index.scss";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import CalculationPage from "./pages/CalculationPage";
-import { Account } from "./components/login/Account";
+
+import "./styles/index.scss";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,9 +15,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="calculate" element={<CalculationPage />} />
+        <Route path="/" element={<Navigate to="/calculate" />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="calculate" element={<CalculationPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
