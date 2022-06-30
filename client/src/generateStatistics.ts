@@ -10,15 +10,16 @@ export interface DisplayData {
 
 function generateStatisitcs(displayData: DisplayData){
 
-    // const { addContr, contrEach, initInvest, rateOfReturn,  } = displayData;
+    const { addContr, contrEach, initInvest, rateOfReturn, yearsToAccum  } = displayData;
     //Get these from user input
-    let initial = 5000;
-    let timeyrs = 1;
-    const rate = 6;
-    let contribution = 100;
+    
+    let initial = parseInt(initInvest);
+    let timeyrs = parseInt(yearsToAccum);
+    const rate = parseInt(rateOfReturn);
+    let contribution = parseInt(addContr);
     let totalCont = 0;
     let final = 0;
-    let choice = "month"; //monthly
+    let choice = contrEach; //monthly
     let totalCalcs = 0;
     
     switch(true){
@@ -49,9 +50,8 @@ function generateStatisitcs(displayData: DisplayData){
 
     }
 
-    // return {graphStats, piStats}
+     return {graphStatistics, piStats}
     
-    //rate = Math.pow(final/(initial+contribution),(1/(1/12)))-1;
 }
 //Monthly Contriubution and Monthly Return
 function monthlyCalc(rate : number, initial : number){
