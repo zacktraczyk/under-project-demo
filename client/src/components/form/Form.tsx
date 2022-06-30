@@ -17,9 +17,10 @@ const Form = (props: formProps) => {
 
   return (
     <div className="form-container">
+      <h1>Investment Calculator</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
-          <p>Initial Investment</p>
+          <p className="field-title">Initial Investment</p>
           <input
             type="number"
             placeholder="5000"
@@ -32,7 +33,7 @@ const Form = (props: formProps) => {
           )}
         </label>
         <label>
-          <p>Years to Accumulate</p>
+          <p className="field-title">Years to Accumulate</p>
           <input
             type="number"
             placeholder="5000"
@@ -45,7 +46,7 @@ const Form = (props: formProps) => {
           )}
         </label>
         <label>
-          <p>Rate of Return</p>
+          <p className="field-title">Rate of Return</p>
           <input
             type="number"
             placeholder="5000"
@@ -58,18 +59,18 @@ const Form = (props: formProps) => {
           )}
         </label>
         <label>
-          <p>Additional Contribution</p>
+          <p className="field-title">Additional Contribution</p>
           <input type="number" placeholder="5000" {...register("addContr")} />
           {errors.rateOfReturn && (
             <p className="error">{"" + errors.rateOfReturn.message}</p>
           )}
         </label>
         <label>
-          <p>Contribute Each</p>
+          <p className="field-title">Contribute Each</p>
           <div className="button-container">
-            <label htmlFor="monthRadio">
+            {/* <label htmlFor="monthRadio">
               Month
-            </label>
+            </label> */}
             <input
               type="radio"
               id="monthRadio"
@@ -80,7 +81,7 @@ const Form = (props: formProps) => {
             <input type="radio" value="year" {...register("contrEach")} />
           </div>
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit">Calculate End Amount</button>
       </form>
     </div>
   );
