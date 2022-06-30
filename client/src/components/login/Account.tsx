@@ -62,6 +62,21 @@ const Account = (props: PropsAccount) => {
     });
   };
 
+  // EXAMPLE USER CONFIRMATION:
+  // aws cognito-idp confirm-sign-up --client-id 16qljlmrbg2sg7rr9spuv0orsh --username ea73fd5b-ab18-4e60-b08f-3c4f051008a6 --confirmation-code 884861
+
+  //FOLLOWING IS FOR CONFIRMING A USER ONCE THERE IS A UI FOR THEM TO PUT THE CODE THEY GOT IN THE EMAIL
+  // const confirm = async () => {
+  //   return await new Promise((resolve, reject) => {
+  //     const user = new CognitoUser({ Username: username, Pool: UserPool });
+
+  //     const authDetails = new AuthenticationDetails({
+  //       Username: username,
+  //       Password: password,
+  //     });
+
+  //     user.confirmRegistration("CODE", false, callback)
+  // }
   const logout = () => {
     console.log("Account.tsx: logout(): Logging OUT");
     const user = UserPool.getCurrentUser();

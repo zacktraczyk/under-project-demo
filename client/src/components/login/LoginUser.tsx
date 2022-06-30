@@ -9,15 +9,13 @@ import UserPool from "./UserPool";
 import "./Login.css";
 
 interface LoginProps {
-  onLogin: Function,
-  displayError: Function
+  onLogin: Function;
+  displayError: Function;
 }
 
 export default function LoginUser(props: LoginProps) {
   const formSchema = Yup.object().shape({
-    username: Yup.string()
-      .required("This is Required")
-      .min(6, "Username should be at least 6 characters"),
+    email: Yup.string().required("This is Required"),
     password: Yup.string()
       .required("This is Required")
       .min(8, "Password should be at least 8 characters"),
@@ -30,7 +28,7 @@ export default function LoginUser(props: LoginProps) {
   const { authenticate } = useContext(AccountContext);
 
   const onSubmit = (data: any) => {
-    authenticate(data.username, data.password)
+    authenticate(data.email, data.password)
       .then((returnData: any) => {
         props.onLogin();
         console.log("Logged in!", returnData);
@@ -49,9 +47,9 @@ export default function LoginUser(props: LoginProps) {
     >
       <form onSubmit={handleSubmit((data) => onSubmit(data))}>
         <div className="field">
-          <input placeholder="Username" type="text" {...register("username")} />
+          <input placeholder="Email" type="text" {...register("email")} />
           <p className="errors">
-            {errors.username != undefined && "" + errors.username?.message}
+            {errors.email != undefined && "" + errors.email?.message}
           </p>
         </div>
 

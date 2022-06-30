@@ -29,7 +29,19 @@ export class ServerStack extends cdk.Stack {
     const userPool = new cognito.UserPool(this, "Under-Project-User-Pool", {
       userPoolName: "Under-Project-User-Pool",
       selfSignUpEnabled: true,
-      signInAliases: {},
+      signInAliases: {
+        email: true,
+      },
+      autoVerify: {
+        email: true,
+      },
+      accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
+      userVerification: {
+        emailSubject: "Verify Your email",
+        emailBody:
+          "Thank you for signing up to our App! Your verification code is {####}",
+        emailStyle: cognito.VerificationEmailStyle.CODE,
+      },
       lambdaTriggers: {
         postConfirmation: cognitoLambda,
       },
@@ -51,7 +63,6 @@ export class ServerStack extends cdk.Stack {
     const client = userPool.addClient("app-client", {
       generateSecret: false,
       supportedIdentityProviders: [
-        cognito.UserPoolClientIdentityProvider.GOOGLE,
         cognito.UserPoolClientIdentityProvider.COGNITO,
       ],
     });

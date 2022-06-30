@@ -14,12 +14,9 @@ interface LoginProps {
 
 export default function LoginUser(props: LoginProps) {
   const formSchema = Yup.object().shape({
-    // email: Yup.string()
-    //   .required("This is Required")
-    //   .email(),
-    username: Yup.string()
+    email: Yup.string()
       .required("This is Required")
-      .min(6, "Username should be at least 6 characters"),
+      .email("This must be a email"),
     password: Yup.string()
       .required("This is Required")
       .min(8, "Password should be at least 8 characters"),
@@ -27,6 +24,9 @@ export default function LoginUser(props: LoginProps) {
       .required("This is Required")
       .oneOf([Yup.ref("password")], "Passwords don't match ;("),
   });
+
+  // EXAMPLE USER CONFIRMATION:
+  // aws cognito-idp confirm-sign-up --client-id 16qljlmrbg2sg7rr9spuv0orsh --username ea73fd5b-ab18-4e60-b08f-3c4f051008a6 --confirmation-code 884861
 
   const validationOpt = { resolver: yupResolver(formSchema) };
   const { register, handleSubmit, watch, formState } = useForm(validationOpt);
@@ -41,7 +41,7 @@ export default function LoginUser(props: LoginProps) {
       <form
         onSubmit={handleSubmit((data) => {
           UserPool.signUp(
-            data.username,
+            data.email,
             data.password,
             [],
             [],
@@ -64,9 +64,9 @@ export default function LoginUser(props: LoginProps) {
           </p>
         </div> */}
         <div className="field">
-          <input placeholder="Username" type="text" {...register("username")} />
+          <input placeholder="Email" type="text" {...register("email")} />
           <p className="errors">
-            {errors.username != undefined && "" + errors.username?.message}
+            {errors.email != undefined && "" + errors.email?.message}
           </p>
         </div>
         <div className="field">
