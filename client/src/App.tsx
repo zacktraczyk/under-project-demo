@@ -15,8 +15,8 @@ const App = () => {
   };
   return (
     <Account>
+      <Login onSubmission={() => console.log("USER LOGGED IN")} />
       <div className="app">
-        <Login onSubmission={() => console.log("USER LOGGED IN")} />
         {/* <Sidebar /> */}
         <div className="main-container">
           <Form submitData={(data: Object) => logData(data)} />

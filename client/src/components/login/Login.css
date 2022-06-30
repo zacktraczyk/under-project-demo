@@ -1,8 +1,9 @@
 .login {
-  position: relative;
+  z-index: 1000;
+  position: absolute;
+  top: 25vh;
   height: 50vh;
   width: 500px;
-  margin: 20px;
   padding: 50px;
   border-radius: 25px;
   background-color: #fff;
