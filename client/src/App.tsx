@@ -5,6 +5,7 @@ import Graphs from "./components/graphs/Graphs";
 
 import "./styles/App.scss";
 import Login from "./components/login/Login";
+import { Account } from "./components/login/Account";
 
 const App = () => {
   const [formData, setFormData] = useState({});
@@ -13,14 +14,16 @@ const App = () => {
     setFormData(data);
   };
   return (
-    <div className="app">
-      {/* <Login onSubmission={() => console.log("USER LOGGED IN")}/> */}
-      {/* <Sidebar /> */}
-      <div className="main-container">
-        <Form submitData={(data: Object) => logData(data)} />
-        <Graphs displayData={formData}/>
+    <Account>
+      <div className="app">
+        <Login onSubmission={() => console.log("USER LOGGED IN")} />
+        {/* <Sidebar /> */}
+        <div className="main-container">
+          <Form submitData={(data: Object) => logData(data)} />
+          <Graphs displayData={formData} />
+        </div>
       </div>
-    </div>
+    </Account>
   );
 };
 
