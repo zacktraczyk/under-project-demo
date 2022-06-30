@@ -13,7 +13,7 @@ const App = () => {
   };
   return (
     <div className="app">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="main-container">
         <Form submitData={(data: Object) => logData(data)} />
         <Graphs displayData={formData}/>
