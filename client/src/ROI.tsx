@@ -4,13 +4,13 @@ function roi(){
     //Get these from user input
     let initial = 5000;
     let timeyrs = 1;
-    let rate = 6/100;
+    const rate = 6;
     let contribution = 100;
     let final = 0;
-    let choice = 0; //monthly
+    let choice = "month"; //monthly
     
     switch(true){
-        case choice == 0:
+        case choice === "month":
             let totalMonths = timeyrs * 12;
             for(let i = 0; i < totalMonths; i++){
             final = monthlyCalc(rate, initial);
