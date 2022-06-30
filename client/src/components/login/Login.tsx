@@ -17,12 +17,12 @@ export default function Login(props: LoginProps) {
   console.log(loginError);
 
   return (
-    <motion.div
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -100, opacity: 0 }}
-    >
-      <div className="login">
+    <div className="login">
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+      >
         <ol>
           <li>
             <h1
@@ -76,7 +76,7 @@ export default function Login(props: LoginProps) {
             )}
           </AnimatePresence>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
