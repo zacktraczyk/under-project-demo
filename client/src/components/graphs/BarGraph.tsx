@@ -1,4 +1,7 @@
 import React from "react";
+
+import "../../styles/components/Graphs.scss";
+
 import {
   BarChart,
   Bar,
@@ -54,9 +57,7 @@ const data = [
   },
 ];
 
-import "../../styles/components/Graph.scss";
-
-const Graph = () => {
+const BarGraph = () => {
   return (
     <BarChart
       width={500}
@@ -80,4 +81,4 @@ const Graph = () => {
   );
 };
 
-export default Graph;
+export default BarGraph;

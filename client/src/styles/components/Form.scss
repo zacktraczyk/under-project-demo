@@ -1,0 +1,34 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+
+  label {
+    display: block;
+  }
+
+  input {
+    width: 200px;
+    padding: 5px;
+
+  }
+
+  .error {
+    color: red;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    input {
+      width: 50px;
+    }
+
+    button {
+      padding-top: 10px;
+    }
+  }
+}
