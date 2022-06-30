@@ -31,11 +31,11 @@ export default function LoginUser(props: LoginProps) {
 
   const onSubmit = (data: any) => {
     authenticate(data.username, data.password)
-      .then((returnData) => {
+      .then((returnData: any) => {
         props.onLogin();
         console.log("Logged in!", returnData);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         props.displayError(err);
         console.error("Failed to login!", err);
       });

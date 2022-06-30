@@ -10,13 +10,13 @@ interface PropsAccount {
   children: React.ReactNode;
 }
 
-export interface AccountCtx {
-  authenticate: Function;
-  getSession: Function;
-  logout: Function;
-}
+// export interface AccountCtx {
+//   authenticate: Function;
+//   getSession: Function;
+//   logout: Function;
+// }
 
-const AccountContext = createContext<AccountCtx | null>(null);
+const AccountContext = createContext<any | null>(null);
 
 const Account = (props: PropsAccount) => {
   const getSession = async () => {

@@ -4,6 +4,7 @@ import Form from "./components/form/Form";
 import Graphs from "./components/graphs/Graphs";
 
 import "./styles/App.scss";
+import Login from "./components/login/Login";
 
 const App = () => {
   const [formData, setFormData] = useState({});
@@ -13,6 +14,7 @@ const App = () => {
   };
   return (
     <div className="app">
+      <Login onSubmission={() => console.log("USER LOGGED IN")}/>
       {/* <Sidebar /> */}
       <div className="main-container">
         <Form submitData={(data: Object) => logData(data)} />
