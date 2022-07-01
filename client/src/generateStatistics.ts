@@ -1,5 +1,7 @@
 //Annualized ROI
 
+import { time } from "console";
+
 export interface DisplayData {
   addContr: string;
   contrEach: string;
@@ -29,13 +31,10 @@ function generateStatisitcs(displayData: DisplayData) {
   // Generate GraphData
   let barStats = new Array();
   let totalCont = 0;
-  let total = initial;
-  let piTotal = 0;
   const year = new Date();
   const yrlyCont = interval * contribution;
   for (let i = 0; i < timeyrs; i++) {
     const yearTotal = (rate / 100 + 1) * (initial + yrlyCont);
-    piTotal = yearTotal;
     totalCont += yrlyCont;
 
     barStats.push({
@@ -45,11 +44,11 @@ function generateStatisitcs(displayData: DisplayData) {
       initial: initial,
     });
   }
-
-  const yearTotal = (rate / 100 + 1) * (initial + yrlyCont);
+  totalCont = yrlyCont * timeyrs;
+  const yearTotal = Math.pow((rate / 100 + 1),timeyrs) * (initial + totalCont);
 
   let piStats = [
-    { name: "Total Growth", value: yearTotal - initial + totalCont },
+    { name: "Total Growth", value: yearTotal - initial},
     { name: "Contributions", value: totalCont },
     { name: "Intial", value: initial },
   ];

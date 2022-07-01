@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart, Pie, Cell, Legend } from "recharts";
 
 import "../../styles/components/Pi.scss";
 
@@ -40,6 +40,7 @@ const Pi = (props: propsPiGraph) => {
   console.log('PiGraph.tsx: PiGraph data:', props.data);
   return (
     <PieChart width={400} height={400}>
+      <Legend layout="horizontal" verticalAlign="top" align="center" />
       <Pie
         data={props.data}
         cx={200}
