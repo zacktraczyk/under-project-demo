@@ -14,16 +14,6 @@ export class ServerStack extends cdk.Stack {
       sortKey: { name: "formId", type: dynamodb.AttributeType.STRING },
     });
 
-    // Creating lambda for cognito to put into dynamoDB
-    const cognitoLambda = new lambda.Function(this, "cognitoLambdaHandler", {
-      runtime: lambda.Runtime.NODEJS_12_X,
-      code: lambda.Code.fromAsset("./functions"),
-      handler: "cognitoLambda.handler",
-      environment: {
-        USER_FORM_DATA_TABLE_NAME: table.tableName,
-      },
-    });
-
     // Creating Cognito user pool
 
     const userPool = new cognito.UserPool(this, "Under-Project-User-Pool", {
@@ -41,9 +31,6 @@ export class ServerStack extends cdk.Stack {
         emailBody:
           "Thank you for signing up to our App! Your verification code is {####}",
         emailStyle: cognito.VerificationEmailStyle.CODE,
-      },
-      lambdaTriggers: {
-        postConfirmation: cognitoLambda,
       },
       passwordPolicy: {
         minLength: 6,
@@ -123,7 +110,6 @@ export class ServerStack extends cdk.Stack {
 
     // permissions to lambda to dynamo table
 
-    table.grantWriteData(cognitoLambda);
     table.grantWriteData(putLambda);
     table.grantReadData(scanLambda);
     table.grantReadData(queryUserLambda);
