@@ -1,10 +1,5 @@
 @import "screenSizes";
-
-$text-color1: #42522E;
-
-.app {
-  color: $text-color1;
-}
+@import "./themes/green-theme.scss";
 
 .main-container {
   height: 100vh;
@@ -12,7 +7,7 @@ $text-color1: #42522E;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  // background-color: green;
+  background-color: #F7F7F7;
 
   @include small-down {
     flex-direction: column;

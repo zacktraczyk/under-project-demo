@@ -1,6 +1,7 @@
 @import '../themes/green-theme.scss';
 
 .form-container {
+  color: $dark-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,11 +9,10 @@
   height: 100%;
   width: 580px;
   padding-left: 50px;
-  // background-color: $background-color;
 
   h1 {
     font-size: 30px;
-    width: 100%;
+    width: 80%;
   }
 
   label {
