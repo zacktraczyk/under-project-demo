@@ -44,6 +44,7 @@ function generateStatisitcs(displayData: DisplayData) {
       contributions: totalCont,
       initial: initial,
     });
+<<<<<<< HEAD
     piStats.push({
         totalGrowth: yearTotal - initial + totalCont,
         contributions: totalCont,
@@ -65,6 +66,10 @@ function generateStatisitcs(displayData: DisplayData) {
     total += yearTotal;
 }
 */
+=======
+  }
+
+>>>>>>> b5c32de42c4009e4d126891d3c3b68fa724bf040
   return { barStats, piStats };
 }
 
