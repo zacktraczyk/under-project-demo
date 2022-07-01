@@ -110,14 +110,11 @@
   padding: 0;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: -15px;
   margin-left: -3px;
   border: 3px solid $dark-color;
   border-radius: 5px;
-}
-
-.login input::placeholder {
-  color: $dark-color;
-  padding-left: 15px;
 }
 
 .login .errors {
