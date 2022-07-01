@@ -80,10 +80,14 @@ export default function Login(props: LoginProps) {
           </div>
         </motion.div>
       </div>
-      <div className="welcome-image-container">
-        <h2>Nice to see you again</h2>
-        <h1>Welcome Back</h1>
-        <img src={exampleDesktop} className="welcome-image"></img>
+      <div className="welcome-container">
+        <div className="welcome-greeting">
+          <h2>Nice to see you again</h2>
+          <h1>Welcome Back</h1>
+        </div>
+        <div className="welcome-image-container">
+          <img src={exampleDesktop} className="welcome-image"></img>
+        </div>
       </div>
     </div>
   );

@@ -8,27 +8,34 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 80vw;
-  height: 80vh
+  width: 100vw;
+  height: 100vh
 }
+
 .login {
   z-index: 1000;
   width: 30vw;
-  // width: 500px;
+
   padding: 10vw;
   background-color: #fff;
 }
 
-.welcome-image-container {
+.welcome-container {
   background-image: url("../../assets/welcomeBackground.jpg");
   background-size: cover;
   width: 50%;
-
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-content: center;
   justify-content: center;
+}
 
+.welcome-image-container {
+  justify-content: center;
+}
+
+.welcome-greeting {
   h1 {
     font-size: 30px;
   }
@@ -39,8 +46,7 @@
 }
 
 .welcome-image {
-  width: 30vw;
-  padding: 5vw;
+  width: 80%;
 }
 
 .slider-container {

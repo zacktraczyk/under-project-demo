@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import UserPool from "./UserPool";
 import "../../styles/components/Login.scss";
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
   onLogin: Function;
@@ -25,6 +26,7 @@ export default function LoginUser(props: LoginProps) {
   const validationOpt = { resolver: yupResolver(formSchema) };
   const { register, handleSubmit, watch, formState } = useForm(validationOpt);
   const { errors } = formState;
+  const navigate = useNavigate();
 
   const { authenticate } = useContext(AccountContext);
 
@@ -33,6 +35,7 @@ export default function LoginUser(props: LoginProps) {
       .then((returnData: any) => {
         props.onLogin();
         console.log("Logged in!", returnData);
+        navigate("/calculate");
       })
       .catch((err: any) => {
         props.displayError(err);
