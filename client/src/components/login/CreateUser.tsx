@@ -12,6 +12,7 @@ interface LoginProps {
   displayError: Function;
   setLoginSlide: Function;
   setLoginError: Function;
+  displaySuccess: Function;
 }
 
 export default function LoginUser(props: LoginProps) {
@@ -24,7 +25,7 @@ export default function LoginUser(props: LoginProps) {
       .min(8, "Password should be at least 8 characters"),
     passwordConfirm: Yup.string()
       .required("This is Required")
-      .oneOf([Yup.ref("password")], "Passwords don't match ;("),
+      .oneOf([Yup.ref("password")], "Passwords don't match"),
   });
 
   // EXAMPLE USER CONFIRMATION:
@@ -129,6 +130,7 @@ export default function LoginUser(props: LoginProps) {
           setWaitingCode={setWaitingCode}
           displayError={props.displayError}
           setLoginSlide={props.setLoginSlide}
+          displaySuccess={props.displaySuccess}
         />
       )}
     </motion.div>
