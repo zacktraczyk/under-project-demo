@@ -44,21 +44,8 @@ function generateStatisitcs(displayData: DisplayData) {
       contributions: totalCont,
       initial: initial,
     });
-    /*
-  for (let i = 0; i < timeyrs; i++) {
-    const yearTotal = Math.pow(rate / 100 + 1, 1 / interval) * initial;
-    totalCont += contribution;
-
-    barStats.push({
-      name: "Year",
-      totalGrowth: yearTotal - initial + totalCont,
-      contributions: totalCont,
-      initial: initial,
-    });
-
-    total += yearTotal;
   }
-*/
+
   return { barStats, piStats };
 }
 
