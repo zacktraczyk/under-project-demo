@@ -16,7 +16,7 @@ function generateStatisitcs(displayData: DisplayData) {
   const timeyrs = parseInt(yearsToAccum);
   const rate = parseInt(rateOfReturn);
   const contribution = parseInt(addContr);
-  const choice = contrEach; //monthly
+  const choice = contrEach; //month,quarter,yr
 
   // Initalize Return Variables
   let barStats = new Array();
@@ -33,6 +33,18 @@ function generateStatisitcs(displayData: DisplayData) {
   // Generate GraphData
   let totalCont = 0;
   let total = initial;
+  const yrlyCont = interval * contribution;
+  for (let i = 0; i < timeyrs; i++) {
+    const yearTotal = (rate / 100 + 1) * (initial + yrlyCont);
+    totalCont += yrlyCont;
+
+    barStats.push({
+      name: "Year",
+      totalGrowth: yearTotal - initial + totalCont,
+      contributions: totalCont,
+      initial: initial,
+    });
+    /*
   for (let i = 0; i < timeyrs; i++) {
     const yearTotal = Math.pow(rate / 100 + 1, 1 / interval) * initial;
     totalCont += contribution;
@@ -46,7 +58,7 @@ function generateStatisitcs(displayData: DisplayData) {
 
     total += yearTotal;
   }
-
+*/
   return { barStats, piStats };
 }
 
