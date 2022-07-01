@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import CalculationPage from "./pages/CalculationPage";
 
 import "./styles/index.scss";
+import Navbar from "./components/navbar/Navbar";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,6 +14,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    <Navbar />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/calculate" />} />

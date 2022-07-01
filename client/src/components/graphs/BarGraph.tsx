@@ -35,9 +35,9 @@ const BarGraph = (props: propsBarGraph) => {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="initial" stackId="a" fill="#000000" />
-      <Bar dataKey="contributions" stackId="a" fill="#82ca9d" />
-      <Bar dataKey="totalGrowth" stackId="a" fill="#8884d8" />
+      <Bar dataKey="initial" stackId="a" fill="#4A6E2C" />
+      <Bar dataKey="contributions" stackId="a" fill="#6E9532" />
+      <Bar dataKey="totalGrowth" stackId="a" fill="#CBD595" />
     </BarChart>
   );
 };

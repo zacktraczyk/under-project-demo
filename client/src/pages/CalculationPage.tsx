@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Form from "../components/form/Form";
 import Graphs from "../components/graphs/Graphs";
 import { Account } from "../components/login/Account";

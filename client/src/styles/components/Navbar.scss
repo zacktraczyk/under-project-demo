@@ -1,0 +1,17 @@
+.navbar-container {
+  position: fixed;
+  height: 80px;
+  width: 100vw;
+  background-color: #F7F7F7;
+  margin: 0px;
+  padding: 0px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  h1 {
+    margin: 0px;
+    font-size: 20px;
+  }
+}
