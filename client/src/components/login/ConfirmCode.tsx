@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-
-import "./Login.css";
+import "../../styles/components/Login.scss";
 
 interface ConfirmCodeProps {
   email: String;

@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import UserPool from "./UserPool";
 import LoginUser from "./LoginUser";
 import CreateUser from "./CreateUser";
-
-import "./Login.css";
+import "../../styles/components/Login.scss";
 
 interface LoginProps {
   onSubmission: Function;
