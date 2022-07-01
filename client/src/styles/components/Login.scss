@@ -1,7 +1,7 @@
 // @import '../themes/green-theme.scss';
-@import '../themes/green-theme.scss';
+@import "../themes/green-theme.scss";
 
-.login-page-container{
+.login-page-container {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -9,7 +9,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100vw;
-  height: 100vh
+  height: 100vh;
 }
 
 .login {
@@ -37,16 +37,29 @@
 
 .welcome-greeting {
   h1 {
-    font-size: 30px;
+    margin: 0;
+    font-family: $login-h1;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 96px;
+    line-height: 173px;
+    color: #1c1f1f;
   }
 
   h2 {
-    font-size: 10px;
+    margin: 0;
+    font-family: $login-h2;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
   }
 }
 
 .welcome-image {
   width: 80%;
+  border-radius: 10.9153px;
 }
 
 .slider-container {
@@ -96,6 +109,8 @@
   width: 100%;
   font-size: 15px;
   padding: 10px;
+  border: 3px solid $dark-color;
+  border-radius: 5px;
 }
 
 .login .errors {
@@ -120,7 +135,7 @@
   border-radius: 10px;
 }
 
-.login input[type=submit] {
+.login input[type="submit"] {
   font-size: inherit;
   width: 100%;
   cursor: pointer;
@@ -128,11 +143,11 @@
   height: 4em;
   border-radius: 10px;
   padding: 10px;
-  background-color: $accent-color;
+  background-color: $dark-color;
+  color: #fff;
 }
 
 @media only screen and (max-width: 600px) {
-
   .login {
     width: 80vw;
     padding: 30px;

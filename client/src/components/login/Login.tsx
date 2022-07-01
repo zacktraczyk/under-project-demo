@@ -24,7 +24,7 @@ export default function Login(props: LoginProps) {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
         >
-          <ol>
+          {/* <ol>
             <li>
               <h1
                 className={loginSlide ? "selected" : ""}
@@ -47,7 +47,7 @@ export default function Login(props: LoginProps) {
                 Create User
               </h1>
             </li>
-          </ol>
+          </ol> */}
 
           <div className="slider-container">
             <AnimatePresence>
@@ -55,6 +55,8 @@ export default function Login(props: LoginProps) {
                 <LoginUser
                   onLogin={props.onSubmission}
                   displayError={(error: Error) => setLoginError(error)}
+                  setLoginSlide={setLoginSlide}
+                  setLoginError={setLoginError}
                 />
               )}
               {!loginSlide && (

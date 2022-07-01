@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 interface LoginProps {
   onLogin: Function;
   displayError: Function;
+  setLoginSlide: Function;
+  setLoginError: Function;
 }
 
 export default function LoginUser(props: LoginProps) {
@@ -27,7 +29,6 @@ export default function LoginUser(props: LoginProps) {
   const { register, handleSubmit, watch, formState } = useForm(validationOpt);
   const { errors } = formState;
   const navigate = useNavigate();
-
   const { authenticate } = useContext(AccountContext);
 
   const onSubmit = (data: any) => {
@@ -49,14 +50,17 @@ export default function LoginUser(props: LoginProps) {
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: -30, opacity: 0 }}
     >
+      <h1 className="log-in-header">Log in</h1>
+      <h2 className="log-in-quip">Welcome back! Please enter your details.</h2>
       <form onSubmit={handleSubmit((data) => onSubmit(data))}>
+        <h3 className="form-labels">Email</h3>
         <div className="field">
           <input placeholder="Email" type="text" {...register("email")} />
           <p className="errors">
             {errors.email != undefined && "" + errors.email?.message}
           </p>
         </div>
-
+        <h3 className="form-labels">Password</h3>
         <div className="field">
           <input
             placeholder="Password"
@@ -67,8 +71,20 @@ export default function LoginUser(props: LoginProps) {
             {errors.password != undefined && "" + errors.password?.message}
           </p>
         </div>
-        <input type="submit" value="submit"></input>
+        <input type="submit" value="Log In"></input>
       </form>
+      <div className="sign-up-toggle-holder">
+        <h1 className="sign-up-text">Don't have an account?</h1>
+        <h1
+          className="sign-up-link"
+          onClick={() => {
+            props.setLoginSlide(false);
+            props.setLoginError(null);
+          }}
+        >
+          Sign up
+        </h1>
+      </div>
     </motion.div>
   );
 }
