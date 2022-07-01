@@ -46,7 +46,7 @@ const Pi = (props: propsPiGraph) => {
   return (
     <PieChart width={400} height={400}>
       <Pie
-        data={data}
+        data={props.data}
         cx={200}
         cy={200}
         labelLine={false}

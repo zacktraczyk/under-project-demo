@@ -24,7 +24,7 @@ function Graphs(props: GraphsProps) {
   return (
     <div className="graph-container">
       <BarGraph data={statistics.barGraph} />
-      <Pi />
+      <Pi data={statistics.pi}/>
     </div>
   );
 }
