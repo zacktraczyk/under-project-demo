@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import UserPool from "./UserPool";
-import "./Login.css";
+import "../../styles/components/Login.scss";
 import ConfirmCode from "./ConfirmCode";
 
 interface LoginProps {
