@@ -55,7 +55,11 @@ export default function LoginUser(props: LoginProps) {
       <form onSubmit={handleSubmit((data) => onSubmit(data))}>
         <h3 className="form-labels">Email</h3>
         <div className="field">
-          <input placeholder="Email" type="text" {...register("email")} />
+          <input
+            placeholder="Enter your email"
+            type="text"
+            {...register("email")}
+          />
           <p className="errors">
             {errors.email != undefined && "" + errors.email?.message}
           </p>
@@ -63,7 +67,7 @@ export default function LoginUser(props: LoginProps) {
         <h3 className="form-labels">Password</h3>
         <div className="field">
           <input
-            placeholder="Password"
+            placeholder="Enter your password"
             type="password"
             {...register("password")}
           />

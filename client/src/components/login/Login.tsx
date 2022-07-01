@@ -64,6 +64,7 @@ export default function Login(props: LoginProps) {
                   onLogin={props.onSubmission}
                   displayError={(error: Error) => setLoginError(error)}
                   setLoginSlide={setLoginSlide}
+                  setLoginError={setLoginError}
                 />
               )}
 
@@ -83,10 +84,19 @@ export default function Login(props: LoginProps) {
         </motion.div>
       </div>
       <div className="welcome-container">
-        <div className="welcome-greeting">
-          <h2>Nice to see you again</h2>
-          <h1>Welcome Back</h1>
-        </div>
+        {loginSlide && (
+          <div className="welcome-greeting">
+            <h2>Nice to see you again</h2>
+            <h1>Welcome Back</h1>
+          </div>
+        )}
+        {!loginSlide && (
+          <div className="welcome-greeting">
+            <h2>Nice to meet you</h2>
+            <h1>Welcome</h1>
+          </div>
+        )}
+
         <div className="welcome-image-container">
           <img src={exampleDesktop} className="welcome-image"></img>
         </div>

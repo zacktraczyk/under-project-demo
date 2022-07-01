@@ -44,7 +44,10 @@ export default function ConfirmCode(props: ConfirmCodeProps) {
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: -30, opacity: 0 }}
     >
+      <h1 className="log-in-header">Verify Account</h1>
+      <h2 className="log-in-quip">Check your email for a code!</h2>
       <form onSubmit={handleSubmit((data) => onSubmit(data))}>
+        <h3 className="form-labels">Input code</h3>
         <div className="field">
           <input
             placeholder="Insert Emailed Code to Verify"
@@ -55,7 +58,7 @@ export default function ConfirmCode(props: ConfirmCodeProps) {
             {errors.code != undefined && "" + errors.code?.message}
           </p>
         </div>
-        <input type="submit" value="submit"></input>
+        <input type="submit" value="Verify Account"></input>
       </form>
     </motion.div>
   );
