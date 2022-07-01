@@ -1,21 +1,13 @@
 @import "screenSizes";
-
-$text-color1: #42522E;
-
-.app {
-  color: $text-color1;
-  background: url(../assets/background.svg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+@import "./themes/green-theme.scss";
 
 .main-container {
   height: 100vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  background-color: #F7F7F7;
 
   @include small-down {
     flex-direction: column;

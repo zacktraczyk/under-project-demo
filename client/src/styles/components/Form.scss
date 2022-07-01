@@ -1,18 +1,19 @@
-$background-color: #F7F8F7;
+// @import '../themes/green-theme.scss';
+@import '../themes/green-theme.scss';
 
 .form-container {
+  color: $dark-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: baseline;
-  padding-left: 200px;
   height: 100%;
-  width: 100%;
-  // background-color: $background-color;
+  width: 580px;
+  padding-left: 50px;
 
   h1 {
     font-size: 30px;
-    width: 60%;
+    width: 80%;
   }
 
   label {
@@ -100,7 +101,7 @@ $background-color: #F7F8F7;
     }
 
     button {
-      background-color: #E3E9D3;
+      background-color: $light-color;
       border: none;
       padding: 10px 22px;
       cursor: pointer;
@@ -108,13 +109,13 @@ $background-color: #F7F8F7;
     }
 
     .selected {
-      background-color: #6E9532;
+      background-color: $accent-color;
       color: white;
     }
   }
 
   button[type=submit] {
-    background: #42522E;
+    background: $dark-color;
     font-size: 14px;
     color: white;
     font-weight: bold;
