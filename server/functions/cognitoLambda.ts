@@ -33,8 +33,8 @@ exports.handler = async function (
     TableName: USER_FORM_DATA_TABLE_NAME!,
     // creating the item
     Item: {
-      clientId: event.userName,
-      formId: event.request.userAttributes.sub,
+      clientId: event.request.userAttributes.email,
+      formId: event.userName,
     },
   };
 
@@ -42,6 +42,7 @@ exports.handler = async function (
   try {
     await createItem(params);
     console.log("Successfuly created item!");
+    console.log("event");
     callback(null, event);
   } catch (err) {
     console.error(err);

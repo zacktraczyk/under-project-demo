@@ -1,4 +1,5 @@
 import React, { createContext } from "react";
+import axios from "axios";
 import {
   CognitoUserSession,
   CognitoUser,
@@ -38,27 +39,39 @@ const Account = (props: PropsAccount) => {
 
   const authenticate = async (username: string, password: string) => {
     return await new Promise((resolve, reject) => {
-      const user = new CognitoUser({ Username: username, Pool: UserPool });
+      axios
+        .get(
+          " https://1jsob4hkr0.execute-api.us-east-2.amazonaws.com/prod/main/" +
+            username
+        )
+        .then((response) => {
+          console.log(response);
+          console.log(response.data[0].formId);
+          const user = new CognitoUser({
+            Username: response.data[0].formId,
+            Pool: UserPool,
+          });
 
-      const authDetails = new AuthenticationDetails({
-        Username: username,
-        Password: password,
-      });
+          const authDetails = new AuthenticationDetails({
+            Username: response.data.formId,
+            Password: password,
+          });
 
-      user.authenticateUser(authDetails, {
-        onSuccess: (data) => {
-          console.log("Account.ts: onSuccess:", data);
-          resolve(data);
-        },
-        onFailure: (err) => {
-          console.error("Account.ts: onFailure:", err);
-          reject(err);
-        },
-        newPasswordRequired: (data) => {
-          console.log("Account.ts: newPasswordRequired:", data);
-          resolve(data);
-        },
-      });
+          user.authenticateUser(authDetails, {
+            onSuccess: (data) => {
+              console.log("Account.ts: onSuccess:", data);
+              resolve(data);
+            },
+            onFailure: (err) => {
+              console.error("Account.ts: onFailure:", err);
+              reject(err);
+            },
+            newPasswordRequired: (data) => {
+              console.log("Account.ts: newPasswordRequired:", data);
+              resolve(data);
+            },
+          });
+        });
     });
   };
 
