@@ -11,6 +11,7 @@ interface ConfirmCodeProps {
   setWaitingCode: Function;
   displayError: Function;
   setLoginSlide: Function;
+  displaySuccess: Function;
 }
 
 export default function ConfirmCode(props: ConfirmCodeProps) {
@@ -30,6 +31,7 @@ export default function ConfirmCode(props: ConfirmCodeProps) {
     confirm(props.email, data.code)
       .then((returnData: any) => {
         console.log("Code Confirmed!", returnData);
+        props.displaySuccess("Code Confirmed! You may now Log in");
         props.setLoginSlide(true);
       })
       .catch((err: any) => {

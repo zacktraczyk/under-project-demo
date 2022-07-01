@@ -13,6 +13,7 @@ interface LoginProps {
 export default function Login(props: LoginProps) {
   const [loginSlide, setLoginSlide] = useState(true);
   const [loginError, setLoginError] = useState<Error | null>(null);
+  const [loginSuccess, setLoginSuccess] = useState<string | any>("");
 
   console.log(loginError);
 
@@ -24,31 +25,6 @@ export default function Login(props: LoginProps) {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
         >
-          {/* <ol>
-            <li>
-              <h1
-                className={loginSlide ? "selected" : ""}
-                onClick={() => {
-                  setLoginSlide(true);
-                  setLoginError(null);
-                }}
-              >
-                Login
-              </h1>
-            </li>
-            <li>
-              <h1
-                className={!loginSlide ? "selected" : ""}
-                onClick={() => {
-                  setLoginSlide(false);
-                  setLoginError(null);
-                }}
-              >
-                Create User
-              </h1>
-            </li>
-          </ol> */}
-
           <div className="slider-container">
             <AnimatePresence>
               {loginSlide && (
@@ -65,6 +41,7 @@ export default function Login(props: LoginProps) {
                   displayError={(error: Error) => setLoginError(error)}
                   setLoginSlide={setLoginSlide}
                   setLoginError={setLoginError}
+                  displaySuccess={(message: string) => setLoginSuccess(message)}
                 />
               )}
 
@@ -76,6 +53,17 @@ export default function Login(props: LoginProps) {
                     exit={{ y: 30, opacity: 0 }}
                   >
                     <p className="request-error">{"" + loginError.message}</p>
+                  </motion.div>
+                </div>
+              )}
+              {loginSuccess != "" && (
+                <div className="error-container">
+                  <motion.div
+                    initial={{ y: -30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 30, opacity: 0 }}
+                  >
+                    <p className="request-success">{"" + loginSuccess}</p>
                   </motion.div>
                 </div>
               )}
