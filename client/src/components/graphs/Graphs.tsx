@@ -11,7 +11,7 @@ interface GraphsProps {
 }
 
 function Graphs(props: GraphsProps) {
-  const [statistics, setStatistics] = useState({ barGraph: new Array(), pi: {} });
+  const [statistics, setStatistics] = useState({ barGraph: new Array(), pi: new Array() });
 
   useEffect(() => {
     console.log("Graph.tsx: useEffect: DATA UPDATED");
