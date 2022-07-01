@@ -20,7 +20,7 @@ function generateStatisitcs(displayData: DisplayData) {
 
   // Initalize Return Variables
   let barStats = new Array();
-  let piStats = new Array();
+  let piStats = {};
 
   // Calculate Year
   let interval = 1; // default year
