@@ -1,3 +1,4 @@
+// @import '../themes/green-theme.scss';
 @import '../themes/green-theme.scss';
 
 .form-container {
@@ -114,7 +115,7 @@
   }
 
   button[type=submit] {
-    background: #42522E;
+    background: $dark-color;
     font-size: 14px;
     color: white;
     font-weight: bold;

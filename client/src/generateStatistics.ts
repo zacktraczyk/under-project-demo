@@ -33,13 +33,14 @@ function generateStatisitcs(displayData: DisplayData) {
   // Generate GraphData
   let totalCont = 0;
   let total = initial;
+  const year = new Date();
   const yrlyCont = interval * contribution;
   for (let i = 0; i < timeyrs; i++) {
     const yearTotal = (rate / 100 + 1) * (initial + yrlyCont);
     totalCont += yrlyCont;
 
     barStats.push({
-      name: "Year",
+      year: "" + (year.getFullYear() + i), 
       totalGrowth: yearTotal - initial + totalCont,
       contributions: totalCont,
       initial: initial,
