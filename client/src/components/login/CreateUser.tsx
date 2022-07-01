@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import UserPool from "./UserPool";
-
 import "./Login.css";
+import ConfirmCode from "./ConfirmCode";
 
 interface LoginProps {
   onLogin: Function;
   displayError: Function;
+  setLoginSlide: Function;
 }
 
 export default function LoginUser(props: LoginProps) {
@@ -28,16 +29,15 @@ export default function LoginUser(props: LoginProps) {
   // EXAMPLE USER CONFIRMATION:
   // aws cognito-idp confirm-sign-up --client-id 16qljlmrbg2sg7rr9spuv0orsh --username ea73fd5b-ab18-4e60-b08f-3c4f051008a6 --confirmation-code 884861
 
+  const [waitingCode, setWaitingCode] = useState(false);
+  const [createdEmail, setCreatedEmail] = useState("");
   const validationOpt = { resolver: yupResolver(formSchema) };
   const { register, handleSubmit, watch, formState } = useForm(validationOpt);
   const { errors } = formState;
 
-  return (
-    <motion.div
-      initial={{ x: -30, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 30, opacity: 0 }}
-    >
+  // I know this is ugly, ill move it to another file once everything is working
+  const displayCreateUserForm = () => {
+    return (
       <form
         onSubmit={handleSubmit((data) => {
           UserPool.signUp(
@@ -52,17 +52,13 @@ export default function LoginUser(props: LoginProps) {
                 props.displayError(null);
                 props.onLogin();
                 console.log(returnData);
+                setCreatedEmail(data.email);
+                setWaitingCode(true);
               }
             }
           );
         })}
       >
-        {/* <div className="field">
-          <input placeholder="Email" type="text" {...register("email")} />
-          <p className="errors">
-            {errors.email != undefined && "" + errors.email?.message}
-          </p>
-        </div> */}
         <div className="field">
           <input placeholder="Email" type="text" {...register("email")} />
           <p className="errors">
@@ -92,6 +88,23 @@ export default function LoginUser(props: LoginProps) {
         </div>
         <input type="submit" value="submit"></input>
       </form>
+    );
+  };
+  return (
+    <motion.div
+      initial={{ x: -30, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: 30, opacity: 0 }}
+    >
+      {!waitingCode && displayCreateUserForm()}
+      {waitingCode && (
+        <ConfirmCode
+          email={createdEmail}
+          setWaitingCode={setWaitingCode}
+          displayError={props.displayError}
+          setLoginSlide={props.setLoginSlide}
+        />
+      )}
     </motion.div>
   );
 }

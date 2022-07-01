@@ -60,6 +60,7 @@ export default function Login(props: LoginProps) {
               <CreateUser
                 onLogin={props.onSubmission}
                 displayError={(error: Error) => setLoginError(error)}
+                setLoginSlide={setLoginSlide}
               />
             )}
 

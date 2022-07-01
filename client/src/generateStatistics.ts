@@ -30,10 +30,12 @@ function generateStatisitcs(displayData: DisplayData) {
   let barStats = new Array();
   let totalCont = 0;
   let total = initial;
+  let piTotal = 0;
   const year = new Date();
   const yrlyCont = interval * contribution;
   for (let i = 0; i < timeyrs; i++) {
     const yearTotal = (rate / 100 + 1) * (initial + yrlyCont);
+    piTotal = yearTotal;
     totalCont += yrlyCont;
 
     barStats.push({

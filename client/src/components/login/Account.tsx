@@ -37,59 +37,56 @@ const Account = (props: PropsAccount) => {
     });
   };
 
-  const authenticate = async (username: string, password: string) => {
+  const authenticate = async (email: string, password: string) => {
     return await new Promise((resolve, reject) => {
-      axios
-        .get(
-          " https://1jsob4hkr0.execute-api.us-east-2.amazonaws.com/prod/main/" +
-            username
-        )
-        .then((response) => {
-          console.log(response);
-          console.log(response.data[0].formId);
-          const user = new CognitoUser({
-            Username: response.data[0].formId,
-            Pool: UserPool,
-          });
+      const user = new CognitoUser({
+        Username: email,
+        Pool: UserPool,
+      });
 
-          const authDetails = new AuthenticationDetails({
-            Username: response.data.formId,
-            Password: password,
-          });
+      const authDetails = new AuthenticationDetails({
+        Username: email,
+        Password: password,
+      });
 
-          user.authenticateUser(authDetails, {
-            onSuccess: (data) => {
-              console.log("Account.ts: onSuccess:", data);
-              resolve(data);
-            },
-            onFailure: (err) => {
-              console.error("Account.ts: onFailure:", err);
-              reject(err);
-            },
-            newPasswordRequired: (data) => {
-              console.log("Account.ts: newPasswordRequired:", data);
-              resolve(data);
-            },
-          });
-        });
+      user.authenticateUser(authDetails, {
+        onSuccess: (data) => {
+          console.log("Account.ts/Authenticate: onSuccess:", data);
+          resolve(data);
+        },
+        onFailure: (err) => {
+          console.error("Account.ts/Authenticate: onFailure:", err);
+          reject(err);
+        },
+        newPasswordRequired: (data) => {
+          console.log("Account.ts/Authenticate:: newPasswordRequired:", data);
+          resolve(data);
+        },
+      });
     });
   };
 
   // EXAMPLE USER CONFIRMATION:
-  // aws cognito-idp confirm-sign-up --client-id 16qljlmrbg2sg7rr9spuv0orsh --username ea73fd5b-ab18-4e60-b08f-3c4f051008a6 --confirmation-code 884861
+  // aws cognito-idp confirm-sign-up --client-id 16qljlmrbg2sg7rr9spuv0orsh --username email@email.com --confirmation-code 884861
 
   //FOLLOWING IS FOR CONFIRMING A USER ONCE THERE IS A UI FOR THEM TO PUT THE CODE THEY GOT IN THE EMAIL
-  // const confirm = async () => {
-  //   return await new Promise((resolve, reject) => {
-  //     const user = new CognitoUser({ Username: username, Pool: UserPool });
+  const confirm = async (email: string, code: string) => {
+    return await new Promise((resolve, reject) => {
+      console.log("Inside Account:", email, UserPool);
+      const user = new CognitoUser({ Username: email, Pool: UserPool });
+      const callback = (err: any, result: any) => {
+        if (err) {
+          console.error("Account.ts/confirm: onFailure:", err);
+          reject(err);
+        } else {
+          console.log("Account.ts/confirm: onSuccess:", result);
+          resolve(result);
+        }
+      };
+      user.confirmRegistration(code, false, callback);
+    });
+  };
 
-  //     const authDetails = new AuthenticationDetails({
-  //       Username: username,
-  //       Password: password,
-  //     });
-
-  //     user.confirmRegistration("CODE", false, callback)
-  // }
   const logout = () => {
     console.log("Account.tsx: logout(): Logging OUT");
     const user = UserPool.getCurrentUser();
@@ -99,7 +96,9 @@ const Account = (props: PropsAccount) => {
   };
 
   return (
-    <AccountContext.Provider value={{ authenticate, getSession, logout }}>
+    <AccountContext.Provider
+      value={{ authenticate, confirm, getSession, logout }}
+    >
       {props.children}
     </AccountContext.Provider>
   );
