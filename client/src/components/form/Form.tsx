@@ -32,6 +32,8 @@ const Form = (props: formProps) => {
             $
             <input
               type="number"
+              min="0"
+              step="0.01"
               placeholder="5000"
               {...register("initInvest", {
                 required: "This field is required",
@@ -45,13 +47,15 @@ const Form = (props: formProps) => {
         <label>
           <p className="field-title">Years to Accumulate</p>
           <span className="input-wrapper">
-          <input
-            type="number"
-            placeholder="5"
-            {...register("yearsToAccum", {
-              required: "This field is required",
-            })}
-          />
+            <input
+              type="number"
+              placeholder="5"
+              step="1"
+              min="1"
+              {...register("yearsToAccum", {
+                required: "This field is required",
+              })}
+            />
           </span>
           {errors.yearsToAccum && (
             <p className="error">{"" + errors.yearsToAccum.message}</p>
@@ -60,14 +64,16 @@ const Form = (props: formProps) => {
         <label>
           <p className="field-title">Rate of Return</p>
           <span className="input-wrapper percentage">
-          <input
-            type="number"
-            placeholder="6"
-            {...register("rateOfReturn", {
-              required: "This field is required",
-            })}
-          />
-          %
+            <input
+              type="number"
+              min="0"
+              step="0.001"
+              placeholder="6"
+              {...register("rateOfReturn", {
+                required: "This field is required",
+              })}
+            />
+            %
           </span>
           {errors.rateOfReturn && (
             <p className="error">{"" + errors.rateOfReturn.message}</p>
@@ -77,7 +83,13 @@ const Form = (props: formProps) => {
           <p className="field-title">Additional Contribution</p>
           <span className="input-wrapper">
             $
-            <input type="number" placeholder="100" {...register("addContr")} />
+            <input
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="100"
+              {...register("addContr")}
+            />
           </span>
           {errors.rateOfReturn && (
             <p className="error">{"" + errors.rateOfReturn.message}</p>
