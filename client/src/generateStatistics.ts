@@ -20,7 +20,7 @@ function generateStatisitcs(displayData: DisplayData) {
 
   // Initalize Return Variables
   let barStats = new Array();
-  let piStats = {};
+  let piStats = new Array();
 
   // Calculate Year
   let interval = 1; // default year
@@ -44,6 +44,12 @@ function generateStatisitcs(displayData: DisplayData) {
       contributions: totalCont,
       initial: initial,
     });
+    piStats.push({
+        totalGrowth: yearTotal - initial + totalCont,
+        contributions: totalCont,
+        initial: initial
+        })
+}
     /*
   for (let i = 0; i < timeyrs; i++) {
     const yearTotal = Math.pow(rate / 100 + 1, 1 / interval) * initial;
@@ -57,7 +63,7 @@ function generateStatisitcs(displayData: DisplayData) {
     });
 
     total += yearTotal;
-  }
+}
 */
   return { barStats, piStats };
 }
