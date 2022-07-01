@@ -4,6 +4,11 @@ $text-color1: #42522E;
 
 .app {
   color: $text-color1;
+  background: url(../assets/background.svg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .main-container {

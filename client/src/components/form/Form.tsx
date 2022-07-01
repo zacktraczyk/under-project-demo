@@ -24,7 +24,7 @@ const Form = (props: formProps) => {
 
   return (
     <div className="form-container">
-      <h1>Investment Calculator</h1>
+      <h1>When you invest your earnings, you are investing in your future!</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <p className="field-title">Initial Investment</p>
