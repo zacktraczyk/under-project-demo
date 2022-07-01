@@ -34,6 +34,7 @@ function generateStatisitcs(displayData: DisplayData) {
   let totalCont = 0;
   let total = initial;
   let piTotal = 0;
+  const year = new Date();
   const yrlyCont = interval * contribution;
   for (let i = 0; i < timeyrs; i++) {
     const yearTotal = (rate / 100 + 1) * (initial + yrlyCont);
@@ -41,7 +42,7 @@ function generateStatisitcs(displayData: DisplayData) {
     totalCont += yrlyCont;
 
     barStats.push({
-      name: "Year",
+      year: "" + (year.getFullYear() + i), 
       totalGrowth: yearTotal - initial + totalCont,
       contributions: totalCont,
       initial: initial,
@@ -52,21 +53,6 @@ piStats.push({
   contributions: totalCont,
   initial: initial
   })
-    /*
-  for (let i = 0; i < timeyrs; i++) {
-    const yearTotal = Math.pow(rate / 100 + 1, 1 / interval) * initial;
-    totalCont += contribution;
-
-    barStats.push({
-      name: "Year",
-      totalGrowth: yearTotal - initial + totalCont,
-      contributions: totalCont,
-      initial: initial,
-    });
-
-    total += yearTotal;
-}
-*/
   return { barStats, piStats };
 }
 
