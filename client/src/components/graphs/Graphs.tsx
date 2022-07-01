@@ -11,11 +11,9 @@ interface GraphsProps {
 }
 
 function Graphs(props: GraphsProps) {
-  const [statistics, setStatistics] = useState({ barGraph: new Array(), pi: {} });
+  const [statistics, setStatistics] = useState({ barGraph: new Array(), pi: new Array() });
 
   useEffect(() => {
-    console.log("Graph.tsx: useEffect: DATA UPDATED");
-
     const { barStats, piStats } = generateStatisitcs(props.displayData);
 
     setStatistics({ barGraph: barStats, pi: piStats });
@@ -24,7 +22,7 @@ function Graphs(props: GraphsProps) {
   return (
     <div className="graph-container">
       <BarGraph data={statistics.barGraph} />
-      <Pi />
+      <Pi data={statistics.pi}/>
     </div>
   );
 }

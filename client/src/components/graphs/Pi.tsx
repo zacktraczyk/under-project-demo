@@ -6,13 +6,8 @@ import "../../styles/components/Pi.scss";
 interface propsPiGraph {
   data: Array<Object>
 }
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-];
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
+const COLORS = ["#4A6E2C", "#6E9532", "#CBD595"];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -46,7 +41,7 @@ const Pi = (props: propsPiGraph) => {
   return (
     <PieChart width={400} height={400}>
       <Pie
-        data={data}
+        data={props.data}
         cx={200}
         cy={200}
         labelLine={false}
@@ -55,7 +50,7 @@ const Pi = (props: propsPiGraph) => {
         fill="#8884d8"
         dataKey="value"
       >
-        {data.map((entry, index) => (
+        {props.data.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
