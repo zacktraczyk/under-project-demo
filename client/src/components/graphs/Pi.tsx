@@ -35,7 +35,10 @@ const renderCustomizedLabel = ({
     </text>
   );
 };
-
+/*Change this {`${(percent * 100).toFixed(0)}%`} to get actual data and #'s
+  Tried data[0].value but only sets one value for all
+  "$" + data[index].value works in sandbox
+*/
 const Pi = (props: propsPiGraph) => {
   console.log('PiGraph.tsx: PiGraph data:', props.data);
   return (
