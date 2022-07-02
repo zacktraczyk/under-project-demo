@@ -33,6 +33,7 @@ export default function Login(props: LoginProps) {
                   displayError={(error: Error) => setLoginError(error)}
                   setLoginSlide={setLoginSlide}
                   setLoginError={setLoginError}
+                  displaySuccess={(message: string) => setLoginSuccess(message)}
                 />
               )}
               {!loginSlide && (
@@ -56,7 +57,7 @@ export default function Login(props: LoginProps) {
                   </motion.div>
                 </div>
               )}
-              {loginSuccess != "" && (
+              {loginSuccess != "" && loginError === null && (
                 <div className="error-container">
                   <motion.div
                     initial={{ y: -30, opacity: 0 }}
@@ -84,7 +85,6 @@ export default function Login(props: LoginProps) {
             <h1>Welcome</h1>
           </div>
         )}
-
         <div className="welcome-image-container">
           <img src={exampleDesktop} className="welcome-image"></img>
         </div>

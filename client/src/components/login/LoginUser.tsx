@@ -13,6 +13,7 @@ interface LoginProps {
   displayError: Function;
   setLoginSlide: Function;
   setLoginError: Function;
+  displaySuccess: Function;
 }
 
 export default function LoginUser(props: LoginProps) {
@@ -84,6 +85,7 @@ export default function LoginUser(props: LoginProps) {
           onClick={() => {
             props.setLoginSlide(false);
             props.setLoginError(null);
+            props.displaySuccess("");
           }}
         >
           Sign up
