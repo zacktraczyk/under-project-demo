@@ -28,7 +28,7 @@ function generateStatisitcs(displayData: DisplayData) {
     interval = 4;
   }
 
-  // Generate GraphData
+
   let barStats = new Array();
   let totalCont = 0, tg = 0, tgTemp = 0, yrlyStart = 0;
   let temp = initial;
@@ -54,7 +54,7 @@ function generateStatisitcs(displayData: DisplayData) {
   const yearTotal = Math.pow((rate / 100 + 1),timeyrs) * (initial + totalCont);
 
   let piStats = [
-    { name: "Total Growth", value: yearTotal - initial},
+    { name: "Total Growth", value: tgTemp},
     { name: "Contributions", value: totalCont },
     { name: "Intial", value: initial },
   ];
