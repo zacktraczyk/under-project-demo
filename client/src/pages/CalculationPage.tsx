@@ -37,6 +37,7 @@ export default function CalculationPage(props: CalculationProps) {
       <Form submitData={(data: Object) => logData(data)} />
       <Graphs displayData={formData} loginInfo={props.loginInfo} />
       <button
+        className="logout-button"
         onClick={() => {
           logout();
           getSession();

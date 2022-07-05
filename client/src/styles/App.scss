@@ -9,9 +9,29 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 
   @include small-down {
     flex-direction: column;
   }
+}
+
+.logout-button {
+  font-family: $login-h2;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 10px;
+  width: 80px;
+  cursor: pointer;
+  height: 20px;
+  border-radius: 10px;
+  background-color: $light-accent-color;
+  color: #fff;
+
+  position: absolute;
+  top: 0vh;
+  right: 0%;
+  margin: 20px;
+  margin-top: 25px;
 }
