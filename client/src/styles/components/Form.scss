@@ -1,5 +1,5 @@
 // @import '../themes/green-theme.scss';
-@import '../themes/green-theme.scss';
+@import "../themes/green-theme.scss";
 
 .form-container {
   color: $dark-color;
@@ -12,7 +12,7 @@
   padding-left: 50px;
 
   h1 {
-    font-size: 30px;
+    font-size: 26px;
     width: 80%;
   }
 
@@ -28,15 +28,13 @@
     left: 9.17px;
     top: 9.17px;
 
-
     .field-title {
       font-size: 15px;
     }
-
   }
 
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
@@ -53,10 +51,9 @@
     width: 100%;
     padding: 13px;
     background-color: white;
-    border: 0.458361px solid #E3E9D3;
+    border: 0.458361px solid #e3e9d3;
     box-shadow: 0px 0px 1.83344px rgba(192, 192, 192, 0.25);
     border-radius: 13.7508px;
-
 
     input {
       pointer-events: none;
@@ -64,7 +61,6 @@
       font-size: 16px;
       -webkit-appearance: none;
     }
-
   }
 
   .input-wrapper.currency {
@@ -114,7 +110,7 @@
     }
   }
 
-  button[type=submit] {
+  button[type="submit"] {
     background: $dark-color;
     font-size: 14px;
     color: white;
