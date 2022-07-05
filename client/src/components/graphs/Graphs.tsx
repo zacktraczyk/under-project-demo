@@ -22,6 +22,12 @@ function Graphs(props: GraphsProps) {
     yearTotal: NaN,
   });
 
+  function separator(numb: number) {
+    var str = numb.toString().split(".");
+    str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return str.join(".");
+  }
+
   const [submissionNumber, setSubmissionNumber] = useState(0);
 
   useEffect(() => {
@@ -77,8 +83,11 @@ function Graphs(props: GraphsProps) {
     return (
       <div className="result-container">
         <div className="text-and-graph-container">
-          <h1>Total Balance in 2026:</h1>
-          <h2>$ {~~statistics.yearTotal}</h2>
+          <h1>
+            Total Balance in{" "}
+            {new Date().getFullYear() + statistics.barGraph.length} :
+          </h1>
+          <h2>$ {separator(~~statistics.yearTotal)}</h2>
           <div className="graph-container">
             <div className="bar-graph-container">
               <h1 className="graph-label">Investment Growth Over Time</h1>
