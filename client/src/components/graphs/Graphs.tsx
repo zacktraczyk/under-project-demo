@@ -35,7 +35,7 @@ function Graphs(props: GraphsProps) {
     return (
       <div className="result-conatiner">
         <h1>Total Balance in 2026:</h1>
-        <h2>$ {statistics.yearTotal}</h2>
+        <h2>$ {~~statistics.yearTotal}</h2>
         <div className="graph-container">
           <div className="bar-graph-container">
             <h1 className="graph-label">Investment Growth Over Time</h1>
