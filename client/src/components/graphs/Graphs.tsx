@@ -67,23 +67,27 @@ function Graphs(props: GraphsProps) {
 
   if (isNaN(statistics.yearTotal)) {
     return (
-      <div className="result-conatiner">
-        <div className="graph-container"></div>
+      <div className="result-container">
+        <div className="text-and-graph-container">
+          <div className="graph-container"></div>
+        </div>
       </div>
     );
   } else {
     return (
-      <div className="result-conatiner">
-        <h1>Total Balance in 2026:</h1>
-        <h2>$ {~~statistics.yearTotal}</h2>
-        <div className="graph-container">
-          <div className="bar-graph-container">
-            <h1 className="graph-label">Investment Growth Over Time</h1>
-            <BarGraph data={statistics.barGraph} />
-          </div>
-          <div pi-container>
-            <h1 className="graph-label">Investment Breakdown</h1>
-            <Pi data={statistics.pi} />
+      <div className="result-container">
+        <div className="text-and-graph-container">
+          <h1>Total Balance in 2026:</h1>
+          <h2>$ {~~statistics.yearTotal}</h2>
+          <div className="graph-container">
+            <div className="bar-graph-container">
+              <h1 className="graph-label">Investment Growth Over Time</h1>
+              <BarGraph data={statistics.barGraph} />
+            </div>
+            <div pi-container>
+              <h1 className="graph-label">Investment Breakdown</h1>
+              <Pi data={statistics.pi} />
+            </div>
           </div>
         </div>
       </div>
