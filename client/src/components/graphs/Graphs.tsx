@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import generateStatisitcs, { DisplayData } from "../../generateStatistics";
 import BarGraph from "./BarGraph";
 import Pi from "./Pi";
-
+import axios from "axios";
 import "../../styles/components/Graphs.scss";
 import "../../components/form/Form.tsx";
 
 interface GraphsProps {
   displayData: any | DisplayData;
+  loginInfo: {
+    loggedIn: boolean | null;
+    email: string;
+    uId: string;
+  };
 }
 
 function Graphs(props: GraphsProps) {
@@ -17,12 +22,47 @@ function Graphs(props: GraphsProps) {
     yearTotal: NaN,
   });
 
+  const [submissionNumber, setSubmissionNumber] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://1jsob4hkr0.execute-api.us-east-2.amazonaws.com/prod/main/" +
+          props.loginInfo.uId
+      )
+      .then((response) => {
+        setSubmissionNumber(response.data.length);
+      });
+  }, []);
+
   useEffect(() => {
     const { barStats, piStats, yearTotal } = generateStatisitcs(
       props.displayData
     );
 
     setStatistics({ barGraph: barStats, pi: piStats, yearTotal: yearTotal });
+
+    if (barStats.length > 0) {
+      console.log("AXIOS PUT DISCONNECTED TO NOt add too much clutter");
+
+      // axios
+      //   .put(
+      //     "https://1jsob4hkr0.execute-api.us-east-2.amazonaws.com/prod/main",
+      //     {
+      //       clientId: props.loginInfo.uId,
+      //       formId: "ROI-Form#" + submissionNumber,
+      //       submissionNumber: submissionNumber,
+      //       input: JSON.stringify(props.displayData),
+      //       barStats: JSON.stringify(barStats),
+      //       piStats: JSON.stringify(piStats),
+      //       yearTotal: JSON.stringify(yearTotal),
+      //     }
+      //   )
+      //   .then((response) => {
+      //     console.log(response);
+      //   });
+      setSubmissionNumber(submissionNumber + 1);
+    }
   }, [props.displayData]);
 
   if (isNaN(statistics.yearTotal)) {

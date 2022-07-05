@@ -22,8 +22,6 @@ function LoginPage(props: LoginPageProps) {
     return <Navigate replace={true} to="/calculate" />;
   }
 
-  console.log(props.loginInfo);
-
   return (
     <div className="app">
       <Login onSubmission={() => console.log("USER LOGGED IN")} />

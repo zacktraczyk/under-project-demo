@@ -117,7 +117,15 @@ export class ServerStack extends cdk.Stack {
     table.grantReadWriteData(delFormLambda);
 
     // creates the API Gateway with on emethod and path
-    const api = new apigw.RestApi(this, "under-project-api");
+    const api = new apigw.RestApi(this, "under-project-api", {
+      description: "api for ROI calculator",
+      defaultCorsPreflightOptions: {
+        allowHeaders: ["*"],
+        allowMethods: ["*"],
+        allowCredentials: true,
+        allowOrigins: ["*"],
+      },
+    });
 
     // Create branches to add methods to:
     const main = api.root.resourceForPath("main");

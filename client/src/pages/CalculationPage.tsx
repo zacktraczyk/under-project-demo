@@ -23,6 +23,7 @@ export default function CalculationPage(props: CalculationProps) {
 
   useEffect(() => {
     getSession();
+    console.log(props.loginInfo);
   }, []);
 
   console.log(props.loginInfo);
@@ -34,7 +35,7 @@ export default function CalculationPage(props: CalculationProps) {
   return (
     <div className="main-container">
       <Form submitData={(data: Object) => logData(data)} />
-      <Graphs displayData={formData} />
+      <Graphs displayData={formData} loginInfo={props.loginInfo} />
       <button
         onClick={() => {
           logout();

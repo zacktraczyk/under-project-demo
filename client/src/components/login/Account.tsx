@@ -1,5 +1,4 @@
 import React, { createContext } from "react";
-import axios from "axios";
 import {
   CognitoUserSession,
   CognitoUser,
@@ -28,7 +27,11 @@ const Account = (props: PropsAccount) => {
         user.getSession((err: Error, session: CognitoUserSession | null) => {
           if (err) {
             reject();
-            props.setLoginInfo({ loggedIn: false, email: "", uId: "" });
+            props.setLoginInfo({
+              loggedIn: false,
+              email: "",
+              uId: "",
+            });
           } else {
             console.log(
               "DECODED PAYLOAD: ",
@@ -44,7 +47,11 @@ const Account = (props: PropsAccount) => {
           }
         });
       } else {
-        props.setLoginInfo({ loggedIn: false, email: "", uId: "" });
+        props.setLoginInfo({
+          loggedIn: false,
+          email: "",
+          uId: "",
+        });
       }
     });
   };
