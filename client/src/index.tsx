@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import CalculationPage from "./pages/CalculationPage";
+import App from "./app";
 
 import "./styles/index.scss";
 import Navbar from "./components/navbar/Navbar";
@@ -12,18 +10,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-root.render(
-  <React.StrictMode>
-    <Navbar />
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/calculate" />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="calculate" element={<CalculationPage />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
-);
+root.render(<App />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -9,6 +9,7 @@ import UserPool from "./UserPool";
 
 interface PropsAccount {
   children: React.ReactNode;
+  setLoginInfo: Function;
 }
 
 // export interface AccountCtx {
@@ -27,12 +28,23 @@ const Account = (props: PropsAccount) => {
         user.getSession((err: Error, session: CognitoUserSession | null) => {
           if (err) {
             reject();
+            props.setLoginInfo({ loggedIn: false, email: "", uId: "" });
           } else {
+            console.log(
+              "DECODED PAYLOAD: ",
+              session?.getIdToken().decodePayload()
+            );
+            const payload = session?.getIdToken().decodePayload()!;
+            props.setLoginInfo({
+              loggedIn: true,
+              email: payload.email,
+              uId: payload.sub,
+            });
             resolve(session);
           }
         });
       } else {
-        reject();
+        props.setLoginInfo({ loggedIn: false, email: "", uId: "" });
       }
     });
   };
@@ -52,11 +64,18 @@ const Account = (props: PropsAccount) => {
       user.authenticateUser(authDetails, {
         onSuccess: (data) => {
           console.log("Account.ts/Authenticate: onSuccess:", data);
+          const payload = data.getIdToken().decodePayload();
+          props.setLoginInfo({
+            loggedIn: true,
+            email: payload.email,
+            uId: payload.sub,
+          });
           resolve(data);
         },
         onFailure: (err) => {
           console.error("Account.ts/Authenticate: onFailure:", err);
           reject(err);
+          props.setLoginInfo({ loggedIn: false, email: "", uId: "" });
         },
         newPasswordRequired: (data) => {
           console.log("Account.ts/Authenticate:: newPasswordRequired:", data);
@@ -92,6 +111,7 @@ const Account = (props: PropsAccount) => {
     const user = UserPool.getCurrentUser();
     if (user) {
       user.signOut();
+      props.setLoginInfo({ loggedIn: false, email: "", uId: "" });
     }
   };
 

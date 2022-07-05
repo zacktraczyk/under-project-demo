@@ -15,8 +15,6 @@ export default function Login(props: LoginProps) {
   const [loginError, setLoginError] = useState<Error | null>(null);
   const [loginSuccess, setLoginSuccess] = useState<string | any>("");
 
-  console.log(loginError);
-
   return (
     <div className="login-page-container">
       <div className="login">

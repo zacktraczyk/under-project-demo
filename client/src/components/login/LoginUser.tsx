@@ -30,9 +30,10 @@ export default function LoginUser(props: LoginProps) {
   const { register, handleSubmit, watch, formState } = useForm(validationOpt);
   const { errors } = formState;
   const navigate = useNavigate();
-  const { authenticate } = useContext(AccountContext);
+  const { authenticate, getSession, logout } = useContext(AccountContext);
 
   const onSubmit = (data: any) => {
+    console.log("SESSION: ", getSession());
     authenticate(data.email, data.password)
       .then((returnData: any) => {
         props.onLogin();
@@ -91,6 +92,7 @@ export default function LoginUser(props: LoginProps) {
           Sign up
         </h1>
       </div>
+      {/* <button onClick={logout()}>Logout</button> */}
     </motion.div>
   );
 }
