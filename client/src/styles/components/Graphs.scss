@@ -1,11 +1,30 @@
-.graph-container {
-  background: #F7F7F7;
-  box-shadow: 0px 11px 15px rgba(0, 0, 0, 0.1), 0px 9px 46px rgba(0, 0, 0, 0.06), -4px 24px 38px rgba(0, 0, 0, 0.04);
+@import "../themes/green-theme.scss";
 
+.result-conatiner {
+  background: #f7f7f7;
+  box-shadow: 0px 11px 15px rgba(0, 0, 0, 0.1), 0px 9px 46px rgba(0, 0, 0, 0.06),
+    -4px 24px 38px rgba(0, 0, 0, 0.04);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 63vw;
+  h2 {
+    margin: 0;
+    font-family: $login-h2;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    color: $dark-color;
+  }
+}
+.graph-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  // width: 100%;
-  height: 60vh;
+  width: 100%;
+  height: 64vh;
 }
