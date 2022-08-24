@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import UserPool from "./UserPool";
 import LoginUser from "./LoginUser";
 import CreateUser from "./CreateUser";
 import "../../styles/components/Login.scss";
@@ -44,18 +43,18 @@ export default function Login(props: LoginProps) {
                 />
               )}
 
-              {loginError != undefined && (
+              {loginError !== undefined && (
                 <div className="error-container">
                   <motion.div
                     initial={{ y: -30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 30, opacity: 0 }}
                   >
-                    <p className="request-error">{"" + loginError.message}</p>
+                    <p className="request-error">{"" + loginError?.message}</p>
                   </motion.div>
                 </div>
               )}
-              {loginSuccess != "" && loginError === null && (
+              {loginSuccess !== "" && loginError === null && (
                 <div className="error-container">
                   <motion.div
                     initial={{ y: -30, opacity: 0 }}
@@ -84,7 +83,11 @@ export default function Login(props: LoginProps) {
           </div>
         )}
         <div className="welcome-image-container">
-          <img src={exampleDesktop} className="welcome-image"></img>
+          <img
+            src={exampleDesktop}
+            className="welcome-image"
+            alt="Example Desktop"
+          ></img>
         </div>
       </div>
     </div>

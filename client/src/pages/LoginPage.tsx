@@ -16,6 +16,7 @@ function LoginPage(props: LoginPageProps) {
 
   useEffect(() => {
     getSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (props.loginInfo.loggedIn === true) {

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Account, AccountContext } from "./Account";
+import { AccountContext } from "./Account";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,7 +20,7 @@ export default function ConfirmCode(props: ConfirmCodeProps) {
   });
 
   const validationOpt = { resolver: yupResolver(formSchema) };
-  const { register, handleSubmit, watch, formState } = useForm(validationOpt);
+  const { register, handleSubmit, formState } = useForm(validationOpt);
   const { errors } = formState;
 
   const { confirm } = useContext(AccountContext);
@@ -57,7 +57,7 @@ export default function ConfirmCode(props: ConfirmCodeProps) {
             {...register("code")}
           />
           <p className="errors">
-            {errors.code != undefined && "" + errors.code?.message}
+            {errors.code !== undefined && "" + errors.code?.message}
           </p>
         </div>
         <input type="submit" value="Verify Account"></input>

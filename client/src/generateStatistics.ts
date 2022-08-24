@@ -1,7 +1,5 @@
 //Annualized ROI
 
-import { time } from "console";
-
 export interface DisplayData {
   addContr: string;
   contrEach: string;
@@ -28,7 +26,7 @@ function generateStatisitcs(displayData: DisplayData) {
     interval = 4;
   }
 
-  let barStats = new Array();
+  let barStats = new Array<Object>();
   let totalCont = 0,
     tg = 0,
     tgTemp = 0,

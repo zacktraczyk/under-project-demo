@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Account, AccountContext } from "../components/login/Account";
+import { AccountContext } from "../components/login/Account";
 import Form from "../components/form/Form";
 import Graphs from "../components/graphs/Graphs";
 import "../styles/App.scss";
@@ -24,6 +24,7 @@ export default function CalculationPage(props: CalculationProps) {
   useEffect(() => {
     getSession();
     console.log(props.loginInfo);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(props.loginInfo);

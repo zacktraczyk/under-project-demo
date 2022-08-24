@@ -17,8 +17,8 @@ interface GraphsProps {
 
 function Graphs(props: GraphsProps) {
   const [statistics, setStatistics] = useState({
-    barGraph: new Array(),
-    pi: new Array(),
+    barGraph: new Array<Object>(),
+    pi: new Array<Object>(),
     yearTotal: NaN,
   });
 
@@ -39,6 +39,7 @@ function Graphs(props: GraphsProps) {
       .then((response) => {
         setSubmissionNumber(response.data.length);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -69,6 +70,7 @@ function Graphs(props: GraphsProps) {
       //   });
       setSubmissionNumber(submissionNumber + 1);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.displayData]);
 
   if (isNaN(statistics.yearTotal)) {

@@ -34,7 +34,7 @@ export default function LoginUser(props: LoginProps) {
   const [waitingCode, setWaitingCode] = useState(false);
   const [createdEmail, setCreatedEmail] = useState("");
   const validationOpt = { resolver: yupResolver(formSchema) };
-  const { register, handleSubmit, watch, formState } = useForm(validationOpt);
+  const { register, handleSubmit, formState } = useForm(validationOpt);
   const { errors } = formState;
 
   // I know this is ugly, ill move it to another file once everything is working
@@ -74,7 +74,7 @@ export default function LoginUser(props: LoginProps) {
               {...register("email")}
             />
             <p className="errors">
-              {errors.email != undefined && "" + errors.email?.message}
+              {errors.email !== undefined && "" + errors.email?.message}
             </p>
           </div>
           <h3 className="form-labels">Password</h3>
@@ -85,7 +85,7 @@ export default function LoginUser(props: LoginProps) {
               {...register("password")}
             />
             <p className="errors">
-              {errors.password != undefined && "" + errors.password?.message}
+              {errors.password !== undefined && "" + errors.password?.message}
             </p>
           </div>
           <h3 className="form-labels">Confirm Password</h3>
@@ -96,7 +96,7 @@ export default function LoginUser(props: LoginProps) {
               {...register("passwordConfirm")}
             />
             <p className="errors">
-              {errors.passwordConfirm != undefined &&
+              {errors.passwordConfirm !== undefined &&
                 "" + errors.passwordConfirm?.message}
             </p>
           </div>

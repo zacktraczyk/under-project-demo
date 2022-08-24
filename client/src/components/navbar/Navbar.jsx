@@ -6,7 +6,7 @@ import "../../styles/components/Navbar.scss";
 function Navbar() {
   return (
     <div className="navbar-container">
-      <img src={Logo} />
+      <img src={Logo} alt="App Logo" />
       <h1>Investment Calculator</h1>
     </div>
   );

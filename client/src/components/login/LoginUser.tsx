@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import { Account, AccountContext } from "./Account";
+import { AccountContext } from "./Account";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import UserPool from "./UserPool";
 import "../../styles/components/Login.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -27,10 +26,10 @@ export default function LoginUser(props: LoginProps) {
   });
 
   const validationOpt = { resolver: yupResolver(formSchema) };
-  const { register, handleSubmit, watch, formState } = useForm(validationOpt);
+  const { register, handleSubmit, formState } = useForm(validationOpt);
   const { errors } = formState;
   const navigate = useNavigate();
-  const { authenticate, getSession, logout } = useContext(AccountContext);
+  const { authenticate, getSession } = useContext(AccountContext);
 
   const onSubmit = (data: any) => {
     console.log("SESSION: ", getSession());
@@ -63,7 +62,7 @@ export default function LoginUser(props: LoginProps) {
             {...register("email")}
           />
           <p className="errors">
-            {errors.email != undefined && "" + errors.email?.message}
+            {errors.email !== undefined && "" + errors.email?.message}
           </p>
         </div>
         <h3 className="form-labels">Password</h3>
@@ -74,7 +73,7 @@ export default function LoginUser(props: LoginProps) {
             {...register("password")}
           />
           <p className="errors">
-            {errors.password != undefined && "" + errors.password?.message}
+            {errors.password !== undefined && "" + errors.password?.message}
           </p>
         </div>
         <input type="submit" value="Log In"></input>
