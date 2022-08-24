@@ -29,12 +29,12 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  //justify-content: center;
 }
 
 .welcome-greeting {
   padding: 0;
   padding-top: 19vh;
+
   h1 {
     margin: 0;
     margin-top: 0.4%;
@@ -167,6 +167,7 @@
   flex-direction: row;
   justify-content: center;
   gap: 5%;
+
   h1 {
     font-family: $login-h2;
     font-style: normal;
