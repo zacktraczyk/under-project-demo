@@ -18,7 +18,7 @@ const App = () => {
     <Account setLoginInfo={setLoginInfo}>
       <Navbar />
 
-      <BrowserRouter>
+      <BrowserRouter basename="/under-project-demo">
         <Routes>
           <Route path="/" element={<Navigate to="/calculate" />} />
           <Route path="login" element={<LoginPage loginInfo={loginInfo} />} />
